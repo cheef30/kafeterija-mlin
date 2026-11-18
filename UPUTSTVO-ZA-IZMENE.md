@@ -103,12 +103,29 @@ Link „Sve recenzije na Google-u” se pojavljuje kad u `data/lokacije.json` up
 4. Koristite `id` u JSON fajlu i uradite commit + push (fajlovi iz `public/img/` idu u repo).
 
 ## Objava
+Sada (sajt se objavljuje sa grane `gh-pages`):
 ```bash
 git add -A
 git commit -m "Meni: cene za Terazije"
 git push
+npm run deploy     # gradi sajt i šalje ga na gh-pages, živo za 1 do 2 minuta
 ```
-Napredak objave: GitHub → repo → Actions. Sajt: https://cheef30.github.io/kafeterija-mlin/
+
+Kad se uključi automatska objava (jednom, vidi ispod), dovoljno je `git push`.
+
+### Uključivanje automatske objave (commit + push = sajt se sam ažurira)
+GitHub token na ovom računaru nema dozvolu za workflow fajlove, pa je workflow spreman u `docs/github-actions-deploy.yml`. Jednom uradite:
+```bash
+gh auth refresh -h github.com -s workflow
+mkdir -p .github/workflows
+git mv docs/github-actions-deploy.yml .github/workflows/deploy.yml
+git commit -m "Objava preko GitHub Actions"
+git push
+gh api -X PUT repos/cheef30/kafeterija-mlin/pages -f build_type=workflow
+```
+Od tada: commit + push na `main` = sajt se sam objavi (napredak: GitHub → Actions).
+
+Sajt: https://cheef30.github.io/kafeterija-mlin/
 
 ## Lokalno pokretanje
 ```bash

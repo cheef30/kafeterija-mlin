@@ -16,7 +16,7 @@ Kafeterija i pržionica kafe iz Beograda, EST. 2017. Tri zvanične lokacije: Vo�
 - Wordmark МЛИН je SVG rekonstrukcija (`src/lib/wordmark.mjs`), verzije u `public/assets/`
 - SEO: schema.org (Organization + 3 × CafeOrCoffeeShop), `sitemap.xml`, `robots.txt`, `llms.txt`, Open Graph
 - Bez kolačića i bez trackera
-- Objava: GitHub Actions → GitHub Pages (`.github/workflows/deploy.yml`)
+- Objava: `npm run deploy` gradi sajt i šalje `dist/` na granu `gh-pages` (GitHub Pages). Workflow za automatsku objavu je spreman u `docs/github-actions-deploy.yml`; aktiviranje je opisano u uputstvu.
 
 ## Lokalno pokretanje
 ```bash
