@@ -1,0 +1,26 @@
+{
+  "lokacija": "vozdovac",
+  "_napomena": "Stavke su prepisane sa izloga na Voždovcu (fotografija 20260718_125851). TODO: potvrditi spisak i uneti cene sa klijentom. Cena je broj u dinarima ili \"TODO\".",
+  "kategorije": [
+    {
+      "naziv": "Kafa",
+      "stavke": [
+        { "naziv": "Espresso", "opis": "", "cena": "TODO" },
+        { "naziv": "Americano", "opis": "", "cena": "TODO" },
+        { "naziv": "Macchiato", "opis": "", "cena": "TODO" },
+        { "naziv": "Cappuccino", "opis": "", "cena": "TODO" },
+        { "naziv": "Caffe latte", "opis": "", "cena": "TODO" },
+        { "naziv": "Mocha", "opis": "", "cena": "TODO" }
+      ]
+    },
+    {
+      "naziv": "Slatko",
+      "stavke": [
+        { "naziv": "Croissant", "opis": "", "cena": "TODO" },
+        { "naziv": "Choco brownies", "opis": "", "cena": "TODO" },
+        { "naziv": "Vanilice", "opis": "", "cena": "TODO" },
+        { "naziv": "Ferdinand knedle", "opis": "", "cena": "TODO" }
+      ]
+    }
+  ]
+}

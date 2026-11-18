@@ -1,0 +1,50 @@
+[
+  {
+    "id": "vozdovac",
+    "naziv": "Voždovac",
+    "adresa": "Kostolačka 79",
+    "grad": "Beograd",
+    "postanskiBroj": "11000",
+    "opis": "Bašta pod braon suncobranima i izlog koji je ručno islikan kredom. Ovde je Mlin počeo.",
+    "oznaka": "Matična lokacija",
+    "lot": "LOT 01",
+    "koordinate": "44.77°N 20.48°E",
+    "geo": { "lat": 44.7696, "lng": 20.4802 },
+    "slika": "vz-fasada",
+    "radnoVreme": "TODO",
+    "openingHoursSchema": "TODO",
+    "googleRecenzijeUrl": "TODO"
+  },
+  {
+    "id": "novi-beograd",
+    "naziv": "Novi Beograd",
+    "adresa": "Španskih boraca 3",
+    "grad": "Beograd",
+    "postanskiBroj": "11070",
+    "opis": "Crni plafon, cigla i šank pod visećim zelenilom. Sa zida vas gleda farmer sa šoljom Mlin.",
+    "oznaka": "Subotom brunch",
+    "lot": "LOT 02",
+    "koordinate": "TODO",
+    "geo": "TODO",
+    "slika": "nbg-sank",
+    "radnoVreme": "TODO",
+    "openingHoursSchema": "TODO",
+    "googleRecenzijeUrl": "TODO"
+  },
+  {
+    "id": "terazije",
+    "naziv": "Terazije 2GO",
+    "adresa": "Terazije 23",
+    "grad": "Beograd",
+    "postanskiBroj": "11000",
+    "opis": "Kiosk od drvenih letvica na Terazijama. Kafa, smoothie i ovsena kaša za poneti.",
+    "oznaka": "TO GO",
+    "lot": "LOT 03",
+    "koordinate": "44.81°N 20.46°E",
+    "geo": { "lat": 44.8135, "lng": 20.4611 },
+    "slika": "ter-kiosk",
+    "radnoVreme": "TODO",
+    "openingHoursSchema": "TODO",
+    "googleRecenzijeUrl": "TODO"
+  }
+]

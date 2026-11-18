@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import Pic from '../components/Pic.astro';
+import Wordmark from '../components/Wordmark.astro';
+import shop from '../../data/shop.json';
+import { mailto, cena, has, instagramDm } from '../lib/site';
+
+const filteri = [
+  { id: 'sve', label: 'Sve' },
+  { id: 'solje', label: 'Šolje' },
+  { id: 'majice', label: 'Majice' },
+  { id: 'cegeri', label: 'Cegeri' },
+  { id: 'limitirano', label: 'Limitirano' },
+];
+const upit = (naziv: string) => mailto(`Upit: ${naziv}`, 'Zdravo,\n\nVeličina:\nKoličina:\nPreuzimanje na lokaciji:\n\nHvala!');
+const lista = (a: string[]) => a.filter((x) => has(x));
+---
+<Base
+  title="Mlin Shop · Šolje, majice i cegeri · Kafeterija Mlin"
+  description="Mlin Shop: šolje sa logom МЛИН, novogodišnja kolekcija šolja, majice i cegeri. Upit pošaljite mejlom, preuzimanje na jednoj od tri lokacije u Beogradu."
+  current="shop"
+  path="/shop/"
+>
+  <header class="wrap page-head">
+    <h1>Mlin Shop</h1>
+    <p class="lead muted">Šolje, majice i cegeri sa logom МЛИН.</p>
+  </header>
+
+  <section class="wrap" style="padding-bottom:var(--sec-y)" id="proizvodi" aria-label="Proizvodi">
+    <p class="intro-note">Za upit o veličini i artiklu pišite nam na mejl ili u Instagram DM, odgovaramo brzo.</p>
+
+    <div class="chips" role="group" aria-label="Filtriraj proizvode">
+      {filteri.map((f, i) => (
+        <button class="chip" type="button" data-filter={f.id} aria-pressed={i === 0 ? 'true' : 'false'}>{f.label}</button>
+      ))}
+    </div>
+    <p class="sr-only" role="status" data-filter-status></p>
+
+    <ul class="products" role="list">
+      {shop.proizvodi.map((p, pi) => (
+        <li class="product" data-kategorija={p.kategorija} data-limitirano={String(p.limitirano)} id={p.id}>
+          <div class="product__img">
+            {p.slika
+              ? <Pic id={p.slika} sizes="(min-width: 1200px) 24vw, (min-width: 640px) 45vw, 100vw" priority={pi === 0} />
+              : <div class="product__none" role="img" aria-label="Fotografija uskoro"><Wordmark title="" /></div>}
+            {p.limitirano && <span class="stamp">{p.sezona ?? 'Limitirano'}</span>}
+          </div>
+          <h2 class="h3-like" style="font-family:var(--f-display);font-stretch:75%;font-weight:750;font-size:clamp(1.4rem,1.2rem + .8vw,1.8rem);line-height:1.05;letter-spacing:-.005em">{p.naziv}</h2>
+          <p>{p.opis}</p>
+          <p class="product__price">{cena(p.cena) ?? 'Cena uskoro'}</p>
+          {(lista(p.boje).length > 0 || lista(p.velicine).length > 0) && (
+            <p class="product__opts">
+              {lista(p.boje).length > 0 && <span>Boje: {lista(p.boje).join(', ')}</span>}
+              {lista(p.velicine).length > 0 && <span>Veličine: {lista(p.velicine).join(', ')}</span>}
+            </p>
+          )}
+          <div class="product__actions">
+            <a class="btn btn--sm" href={upit(p.naziv)}>Pošalji upit<span class="sr-only"> za {p.naziv}</span></a>
+            {instagramDm && <a class="link ext" href={instagramDm} target="_blank" rel="noopener">Piši nam na Instagramu</a>}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>

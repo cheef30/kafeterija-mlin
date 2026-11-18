@@ -1,0 +1,81 @@
+---
+import Base from '../layouts/Base.astro';
+import Pic from '../components/Pic.astro';
+import vz from '../../data/meni-vozdovac.json';
+import nbg from '../../data/meni-novi-beograd.json';
+import ter from '../../data/meni-terazije.json';
+import { lokacije, mapsUrl, has, cena } from '../lib/site';
+
+const meniji: Record<string, any> = { vozdovac: vz, 'novi-beograd': nbg, terazije: ter };
+const slug = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'dj').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+const slikeMenija: Record<string, string> = { vozdovac: 'vz-enterijer-siroko', 'novi-beograd': 'brunch-sto', terazije: 'ter-moskva' };
+---
+<Base
+  title="Meni po lokaciji · Kafeterija Mlin"
+  description="Meni Kafeterije Mlin za Voždovac, Novi Beograd i Terazije 2GO. Espresso, Fresh & So Fresh, Smoothies & Shakes, Oatmeal Big Deal i Saturday Brunch."
+  current="meni"
+  path="/meni/"
+>
+  <header class="wrap page-head">
+    <h1>Meni</h1>
+    <p class="lead muted">Izaberite lokaciju. Svaka ima svoj meni.</p>
+  </header>
+
+  <div class="tabs">
+    <div class="wrap">
+      <div class="tabs__list" role="tablist" aria-label="Lokacije">
+        {lokacije.map((l, i) => (
+          <a class="tab" role="tab" href={`#${l.id}`} id={`tab-${l.id}`} data-id={l.id} aria-controls={`panel-${l.id}`} aria-selected={i === 0 ? 'true' : 'false'}>{l.naziv}</a>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  {lokacije.map((l, li) => {
+    const m = meniji[l.id];
+    const bezCena = m.kategorije.every((k: any) => k.stavke.every((s: any) => !has(s.cena)));
+    return (
+      <section class="menu-panel" id={`panel-${l.id}`} role="tabpanel" aria-labelledby={`tab-${l.id}`} tabindex="0">
+        <nav class="cat-nav" aria-label={`Kategorije: ${l.naziv}`}>
+          <ul role="list" class="wrap">
+            {m.kategorije.map((k: any) => <li><a href={`#${l.id}-${slug(k.naziv)}`}>{k.naziv}</a></li>)}
+          </ul>
+        </nav>
+        <div class="wrap" style="padding-top:2.5rem">
+          <div class="menu-loc">
+            <div>
+              <p class="mono muted">{l.lot} · {l.oznaka}</p>
+              <h2 style="margin-top:.75rem">{l.naziv}</h2>
+              <p style="margin-top:1rem">{l.adresa}, {l.grad} · <a class="link ext" href={mapsUrl(l)} target="_blank" rel="noopener">Mapa<span class="sr-only"> (otvara Google mape)</span></a></p>
+              <p class="mono muted" style="margin-top:.5rem">{has(l.radnoVreme) ? l.radnoVreme : 'Radno vreme uskoro'}</p>
+            </div>
+            <div class="menu-loc__img"><Pic id={slikeMenija[l.id]} sizes="(min-width: 900px) 46vw, 100vw" priority={li === 0} /></div>
+          </div>
+          {bezCena && <p class="notice" role="note">Cene uskoro. Do tada vas barista rado informiše na licu mesta.</p>}
+          <div class="cats">
+            {m.kategorije.map((k: any) => (
+              <section class="cat" id={`${l.id}-${slug(k.naziv)}`} aria-labelledby={`h-${l.id}-${slug(k.naziv)}`}>
+                <h3 id={`h-${l.id}-${slug(k.naziv)}`}>{k.naziv}{k.napomena && <span class="mono">{k.napomena}</span>}</h3>
+                {k.stavke.length > 0 ? (
+                  <ul class="items" role="list">
+                    {k.stavke.map((s: any) => (
+                      <li>
+                        <div>
+                          <p class="name">{s.naziv}</p>
+                          {has(s.opis) && <p class="desc">{s.opis}</p>}
+                        </div>
+                        {cena(s.cena) && <p class="price">{cena(s.cena)}</p>}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p class="cat__empty">Stavke uskoro. Pitajte za ponudu na lokaciji.</p>
+                )}
+              </section>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  })}
+</Base>

@@ -1,0 +1,49 @@
+---
+import Wordmark from './Wordmark.astro';
+import { u, lokacije, mapsUrl } from '../lib/site';
+interface Props { current?: string; }
+const { current = '' } = Astro.props;
+const links = [
+  { href: u('/#lokacije'), label: 'Lokacije', key: 'lokacije' },
+  { href: u('/#przionica'), label: 'Pržionica', key: 'przionica' },
+  { href: u('/meni/'), label: 'Meni', key: 'meni' },
+  { href: u('/shop/'), label: 'Shop', key: 'shop' },
+  { href: u('/#espresso-bike'), label: 'Espresso Bike', key: 'bike' },
+  { href: u('/#novosti'), label: 'Novosti', key: 'novosti' },
+];
+---
+<header class="site-header">
+  <div class="wrap site-header__in">
+    <a class="brand" href={u('/')} aria-label="Kafeterija Mlin, početna">
+      <Wordmark tagline={false} crank title="Kafeterija Mlin" />
+    </a>
+    <nav class="nav" aria-label="Glavna navigacija">
+      <ul role="list">
+        {links.map((l) => (
+          <li><a href={l.href} aria-current={current === l.key ? 'page' : undefined}>{l.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <span class="est" aria-hidden="true">EST. 2017</span>
+    <button class="menu-btn" type="button" aria-haspopup="dialog" aria-controls="mob" data-menu-open>
+      Meni sajta <span class="menu-btn__bars" aria-hidden="true"><span></span><span></span></span>
+    </button>
+  </div>
+</header>
+
+<dialog class="mob dark" id="mob" aria-label="Navigacija">
+  <div class="wrap mob__top">
+    <a class="brand" href={u('/')} aria-label="Kafeterija Mlin, početna"><Wordmark tagline={false} title="Kafeterija Mlin" /></a>
+    <button class="mob__close" type="button" data-menu-close>Zatvori</button>
+  </div>
+  <nav class="wrap mob__links" aria-label="Glavna navigacija">
+    <ul role="list">
+      {links.map((l) => <li><a href={l.href} data-menu-link>{l.label}</a></li>)}
+    </ul>
+  </nav>
+  <div class="wrap mob__locs">
+    {lokacije.map((l) => (
+      <a href={mapsUrl(l)} target="_blank" rel="noopener">{l.naziv} · {l.adresa}<span class="sr-only"> (otvara Google mape)</span></a>
+    ))}
+  </div>
+</dialog>

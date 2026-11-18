@@ -1,0 +1,18 @@
+---
+import { lokacije, mapsUrl } from '../lib/site';
+interface Props { light?: boolean; label?: string; }
+const { light = false, label = 'Tri zvanične lokacije' } = Astro.props;
+---
+<nav class:list={['strip', { 'strip--light': light }]} aria-label={label}>
+  <ul role="list" class="wrap">
+    {lokacije.map((l) => (
+      <li>
+        <a href={mapsUrl(l)} target="_blank" rel="noopener">
+          <span class="strip__n">{l.naziv}</span>
+          <span>{l.adresa}</span>
+          <span class="sr-only">(otvara Google mape)</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>

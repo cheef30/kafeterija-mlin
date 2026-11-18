@@ -1,0 +1,391 @@
+{
+  "hero": {
+    "w": 3648,
+    "h": 4268,
+    "widths": [
+      480,
+      720,
+      960,
+      1600,
+      2400
+    ],
+    "alt": "Barista sipa mleko u šolju i crta latte art, na crnoj kecelji se vidi logo МЛИН",
+    "bg": "rgb(24 24 24)"
+  },
+  "vz-fasada": {
+    "w": 3000,
+    "h": 3600,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Fasada Mlina na Voždovcu: metalni natpis МЛИН, izlog islikan kredom i stolice sa plavim jastučićima",
+    "bg": "rgb(24 24 24)"
+  },
+  "vz-izlog": {
+    "w": 3000,
+    "h": 4000,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Izlog na Voždovcu sa ručno nacrtanom mašinom za prženje kafe i natpisima kredom",
+    "bg": "rgb(40 40 24)"
+  },
+  "vz-enterijer-siroko": {
+    "w": 4000,
+    "h": 3000,
+    "widths": [
+      480,
+      720,
+      960,
+      1600,
+      2400
+    ],
+    "alt": "Enterijer na Voždovcu: zeleni zid, cigla, bicikl na zidu i tirkizne stolice na šarenim pločicama",
+    "bg": "rgb(56 40 24)"
+  },
+  "vz-latte-kreda": {
+    "w": 3000,
+    "h": 4000,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Latte u plavoj šolji sa kitom na šanku, iza je tabla sa kredom i nazivima Brasil i Costa Rica",
+    "bg": "rgb(152 104 72)"
+  },
+  "nbg-sank": {
+    "w": 3000,
+    "h": 4000,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Šank na Novom Beogradu pod visećim zelenilom i bakarnim lampama, desno mural farmera sa šoljom",
+    "bg": "rgb(40 24 24)"
+  },
+  "nbg-mural": {
+    "w": 3648,
+    "h": 3940,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Mural na Novom Beogradu: stariji farmer u roze košulji drži šolju Mlin",
+    "bg": "rgb(8 8 8)"
+  },
+  "ter-kiosk": {
+    "w": 3648,
+    "h": 4487,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Kiosk Mlin na Terazijama ispod zgrade, prolaznici zamućeni u pokretu",
+    "bg": "rgb(24 24 24)"
+  },
+  "ter-moskva": {
+    "w": 3000,
+    "h": 4000,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Šolja za poneti Mlin na pultu, u pozadini hotel Moskva na Terazijama",
+    "bg": "rgb(184 184 168)"
+  },
+  "bar-kreda": {
+    "w": 3648,
+    "h": 5472,
+    "widths": [
+      480,
+      720,
+      960,
+      1600,
+      2400
+    ],
+    "alt": "Espresso mašina sa tri grupe, iznad nje kredom nacrtana šolja sa slovom M i natpis Costa Rica",
+    "bg": "rgb(24 8 8)"
+  },
+  "espresso-vaga": {
+    "w": 3648,
+    "h": 5472,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Espresso teče iz portafiltera u dve šolje Mlin na digitalnoj vagi",
+    "bg": "rgb(8 8 8)"
+  },
+  "latte-medved": {
+    "w": 3021,
+    "h": 4531,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Cappuccino sa latte artom u obliku medveda, pored vanilice i kroasan",
+    "bg": "rgb(40 24 24)"
+  },
+  "latte-slon": {
+    "w": 3648,
+    "h": 5472,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Latte art u obliku slona u plavoj šolji na drvenom stolu",
+    "bg": "rgb(56 56 56)"
+  },
+  "brownie": {
+    "w": 3732,
+    "h": 5598,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Brownie sa kuglom sladoleda na belom tanjiru, posut kakaom",
+    "bg": "rgb(8 8 8)"
+  },
+  "flatlay": {
+    "w": 5472,
+    "h": 3648,
+    "widths": [
+      480,
+      720,
+      960,
+      1600,
+      2400
+    ],
+    "alt": "Odozgo: kroasan na tirkiznom tanjiru, cappuccino sa rozetom i vanilice na drvenom stolu",
+    "bg": "rgb(40 40 40)"
+  },
+  "oatmeal": {
+    "w": 3648,
+    "h": 5472,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Ovsena kaša sa bananom, malinama, borovnicama i bademom, pored topla čokolada",
+    "bg": "rgb(72 72 72)"
+  },
+  "losos-tost": {
+    "w": 3648,
+    "h": 5472,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Tost sa dimljenim lososom, rukolom i rotkvicom na tirkiznom tanjiru",
+    "bg": "rgb(104 136 152)"
+  },
+  "ledeni-latte": {
+    "w": 3648,
+    "h": 5472,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Ledeni latte u slojevima u rebrastoj čaši, na knjigama o kafi",
+    "bg": "rgb(8 8 8)"
+  },
+  "mango-matcha": {
+    "w": 3000,
+    "h": 4000,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Mango matcha u providnoj čaši Mlin ispred kioska na Terazijama",
+    "bg": "rgb(24 24 24)"
+  },
+  "oatmeal-togo": {
+    "w": 3648,
+    "h": 5472,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Ruka posipa cimet po ovsenoj kaši sa bananom, pored šolja za poneti Mlin",
+    "bg": "rgb(8 8 8)"
+  },
+  "brunch-sto": {
+    "w": 3000,
+    "h": 4000,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Subotnji brunch odozgo: tost sa lososom, omlet sa jogurtom i semenkama, kroasan i espresso",
+    "bg": "rgb(200 184 168)"
+  },
+  "brunch-sto-2": {
+    "w": 3000,
+    "h": 4000,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Sto sa brunchom odozgo: omlet, tost sa lososom, kolač i brownie sa sladoledom",
+    "bg": "rgb(216 200 184)"
+  },
+  "bike": {
+    "w": 3648,
+    "h": 2432,
+    "widths": [
+      480,
+      720,
+      960,
+      1600,
+      2400
+    ],
+    "alt": "Mlin Espresso Bike: drveni tricikl sa bakarnom espresso mašinom i mlinom, džakovi kafe od jute",
+    "bg": "rgb(8 8 8)"
+  },
+  "bike-event": {
+    "w": 3000,
+    "h": 4000,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Espresso Bike na događaju u bašti pod belim suncobranom, barista priprema kafu",
+    "bg": "rgb(72 88 40)"
+  },
+  "shop-solje-stack": {
+    "w": 3648,
+    "h": 4596,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Pet šolja МЛИН naslaganih jedna na drugu: narandžasta, tirkizna, roze, siva i plava",
+    "bg": "rgb(24 24 24)"
+  },
+  "shop-novogodisnje": {
+    "w": 3000,
+    "h": 3200,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Naslagane praznične šolje: crvena, plava sa kitom, žuta МЛИН i crna sa Sneškom",
+    "bg": "rgb(24 24 24)"
+  },
+  "shop-solja-jelka": {
+    "w": 1439,
+    "h": 1800,
+    "widths": [
+      480,
+      720,
+      960,
+      1439
+    ],
+    "alt": "Bela šolja sa crvenim autom koji nosi jelku, ispred bašte sa prazničnim mašnama",
+    "bg": "rgb(104 184 232)"
+  },
+  "shop-solja-kit": {
+    "w": 1242,
+    "h": 1553,
+    "widths": [
+      480,
+      720,
+      960,
+      1240
+    ],
+    "alt": "Plava šolja sa ilustracijom kita koji leti na balonima",
+    "bg": "rgb(72 136 184)"
+  },
+  "shop-solja-bicikl": {
+    "w": 1323,
+    "h": 1654,
+    "widths": [
+      480,
+      720,
+      960,
+      1320
+    ],
+    "alt": "Roze šolja sa ilustracijom bicikla i latte artom",
+    "bg": "rgb(216 216 216)"
+  },
+  "shop-majica-tirkiz": {
+    "w": 2419,
+    "h": 2419,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Tirkizna majica sa belim logom МЛИН кафетерија",
+    "bg": "rgb(8 104 136)"
+  },
+  "shop-majica-zuta": {
+    "w": 3174,
+    "h": 2262,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Žuta majica sa belim logom МЛИН кафетерија",
+    "bg": "rgb(184 168 40)"
+  },
+  "solja-cigla": {
+    "w": 3648,
+    "h": 5472,
+    "widths": [
+      480,
+      720,
+      960,
+      1600
+    ],
+    "alt": "Ruka drži žutu šolju МЛИН ispred zida od cigle",
+    "bg": "rgb(56 24 24)"
+  }
+}

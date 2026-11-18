@@ -1,0 +1,45 @@
+---
+import Wordmark from './Wordmark.astro';
+import LocationStrip from './LocationStrip.astro';
+import { lokacije, kontakt, mapsUrl, instagramUrl, has, u } from '../lib/site';
+const godina = new Date().getFullYear();
+---
+<LocationStrip light label="Tri zvanične lokacije (dno strane)" />
+<footer class="site-footer dark">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <h2 class="foot__h mono">Zvanične lokacije</h2>
+        <div class="foot__locs">
+          {lokacije.map((l) => (
+            <div class="foot__loc">
+              <h3>{l.naziv}</h3>
+              <p>{l.adresa}, {l.grad}</p>
+              <p>{has(l.radnoVreme) ? l.radnoVreme : 'Radno vreme uskoro'}</p>
+              <a class="link ext" href={mapsUrl(l)} target="_blank" rel="noopener">Mapa<span class="sr-only"> za lokaciju {l.naziv} (otvara Google mape)</span></a>
+            </div>
+          ))}
+        </div>
+        <p class="foot__note" style="margin-top:2rem">Kafeterija Mlin posluje isključivo na ove tri adrese u Beogradu. Drugi lokali sa imenom Mlin u Srbiji nisu povezani sa nama.</p>
+      </div>
+      <div class="foot__contact">
+        <h2 class="foot__h mono">Kontakt</h2>
+        <a href={`mailto:${kontakt.mejl}`}>{kontakt.mejl}</a>
+        <a href={`tel:${kontakt.telefonLink}`}>{kontakt.telefon}</a>
+        {instagramUrl
+          ? <a href={instagramUrl} target="_blank" rel="noopener">Instagram</a>
+          : <p class="muted">Instagram uskoro</p>}
+        <p class="muted" style="margin-top:1rem">Espresso Bike za vaš događaj: pišite nam na mejl.</p>
+      </div>
+    </div>
+    <div class="foot__mark"><Wordmark frame={false} title="" /></div>
+    <div class="foot__bottom">
+      <span>© 2017 · {godina} Kafeterija Mlin</span>
+      <!-- ss-credit v1 -->
+      <a class="ss-credit" href="https://stefanstevic.rs/" target="_blank" rel="noopener">
+        <svg class="ss-credit__mark" viewBox="1 0 100 120" aria-hidden="true" focusable="false"><path d="M80 12 22 36 51 60"/><path class="ss-credit__accent" d="M51 60 80 84 22 108"/></svg>
+        <span>Izrada sajta: <span class="ss-credit__name">Stefan Stević</span></span>
+      </a>
+    </div>
+  </div>
+</footer>

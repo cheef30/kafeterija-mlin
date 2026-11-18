@@ -1,0 +1,295 @@
+---
+import Base from '../layouts/Base.astro';
+import Pic from '../components/Pic.astro';
+import Chalk from '../components/Chalk.astro';
+import RoastCurve from '../components/RoastCurve.astro';
+import LocationStrip from '../components/LocationStrip.astro';
+import Wordmark from '../components/Wordmark.astro';
+import images from '../generated/images.json';
+import izdvajamo from '../../data/izdvajamo.json';
+import kafe from '../../data/kafe.json';
+import shop from '../../data/shop.json';
+import novosti from '../../data/novosti.json';
+import recenzije from '../../data/recenzije.json';
+import { u, lokacije, mapsUrl, mailto, has, cena, datum } from '../lib/site';
+
+const heroSizes = '(min-width: 1024px) 54vw, 100vw';
+const heroImg = (images as any).hero;
+const preloadImage = {
+  srcset: heroImg.widths.map((w: number) => `${u(`/img/hero-${w}.avif`)} ${w}w`).join(', '),
+  sizes: heroSizes,
+};
+
+const meniGrid = [
+  { id: 'flatlay', cls: 'mg-a', cap: 'Cappuccino i kroasan', sizes: '(min-width: 900px) 56vw, 100vw' },
+  { id: 'latte-medved', cls: 'mg-b', cap: 'Latte art · medved', sizes: '(min-width: 900px) 40vw, 50vw' },
+  { id: 'brownie', cls: 'mg-c', cap: 'Brownie', sizes: '(min-width: 900px) 16vw, 50vw' },
+  { id: 'ledeni-latte', cls: 'mg-d', cap: 'Ledeni latte', sizes: '(min-width: 900px) 24vw, 50vw' },
+  { id: 'latte-slon', cls: 'mg-e', cap: 'Latte art · slon', sizes: '(min-width: 900px) 24vw, 50vw' },
+  { id: 'oatmeal', cls: 'mg-f', cap: 'Ovsena kaša', sizes: '(min-width: 900px) 32vw, 50vw' },
+  { id: 'mango-matcha', cls: 'mg-g', cap: 'Mango matcha', sizes: '(min-width: 900px) 16vw, 50vw' },
+  { id: 'espresso-vaga', cls: 'mg-h', cap: 'Espresso', sizes: '(min-width: 900px) 40vw, 100vw', pos: '50% 56%' },
+];
+
+const teaser = shop.proizvodi.filter((p) => p.istaknuto).slice(0, 4);
+const vesti = [...novosti].sort((a, b) => (a.datum < b.datum ? 1 : -1)).slice(0, 3);
+
+const bikeMail = mailto(
+  'Upit: Mlin Espresso Bike',
+  'Zdravo,\n\nzanima nas Mlin Espresso Bike za naš događaj.\n\nDatum događaja:\nLokacija:\nBroj gostiju:\nVrsta događaja:\nKontakt telefon:\n\nHvala!'
+);
+const shopMail = (naziv: string) => mailto(`Upit: ${naziv}`, 'Zdravo,\n\nVeličina:\nKoličina:\nPreuzimanje na lokaciji:\n\nHvala!');
+const stars = (n: number) => '★'.repeat(Math.round(n)) + '☆'.repeat(5 - Math.round(n));
+---
+<Base
+  title="Kafeterija Mlin · Pržionica i kafa u Beogradu od 2017."
+  description="Zvanični sajt Kafeterije Mlin. Sveže pržena kafa na tri adrese u Beogradu: Voždovac (Kostolačka 79), Novi Beograd (Španskih boraca 3) i Terazije 2GO (Terazije 23)."
+  preloadImage={preloadImage}
+  schema
+>
+  <!-- HERO -->
+  <section class="hero dark" aria-labelledby="hero-naslov">
+    <div class="wrap hero__grid">
+      <div class="hero__text">
+        <p class="hero__eyebrow mono">Kafeterija Mlin Official | Est. 2017</p>
+        <h1 id="hero-naslov">
+          <span class="line"><span>Freshly Roasted.</span></span>
+          <span class="line"><span>Always Mlin.</span></span>
+        </h1>
+        <p class="hero__sub">Od pažljivo odabranog zrna do savršene šoljice. Tri adrese u Beogradu.</p>
+        <div class="hero__cta">
+          <a class="btn" href="#lokacije">Pronađite nas</a>
+          <a class="btn btn--ghost" href={u('/meni/')}>Pogledajte meni</a>
+        </div>
+      </div>
+      <div class="hero__photo">
+        <Pic id="hero" sizes={heroSizes} priority />
+      </div>
+    </div>
+    <LocationStrip />
+  </section>
+
+  <!-- LOKACIJE -->
+  <section class="section" id="lokacije" aria-labelledby="lok-naslov">
+    <div class="wrap">
+      <div class="sec-head sec-head--split">
+        <h2 id="lok-naslov">Tri adrese, jedan Mlin</h2>
+        <p class="lead muted">Svaka lokacija ima svoj karakter. Kafa je ista.</p>
+      </div>
+      <ul class="locs" role="list">
+        {lokacije.map((l) => (
+          <li class="loc" id={`lok-${l.id}`}>
+            <div class="loc__img">
+              <Pic id={l.slika} sizes="(min-width: 768px) 32vw, 84vw" />
+              <span class="stamp loc__tag">{l.oznaka}</span>
+            </div>
+            <div class="loc__meta mono muted">
+              <span>{l.lot}</span>
+              <span>{has(l.koordinate) ? l.koordinate : 'Beograd'}</span>
+            </div>
+            <h3>{l.naziv}</h3>
+            <p class="loc__addr">{l.adresa}, {l.grad}</p>
+            <p class="loc__desc">{l.opis}</p>
+            <p class="loc__hours mono muted">{has(l.radnoVreme) ? l.radnoVreme : 'Radno vreme uskoro'}</p>
+            <div class="loc__actions">
+              <a class="btn btn--sm" href={mapsUrl(l)} target="_blank" rel="noopener">Otvori u Google mapama<span class="sr-only"> (nova kartica)</span></a>
+              <a class="link" href={u(`/meni/#${l.id}`)}>Meni ove lokacije<span class="sr-only">: {l.naziv}</span></a>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <p class="locs-note">Kafeterija Mlin posluje isključivo na ove tri adrese u Beogradu.</p>
+    </div>
+  </section>
+
+  <!-- PRŽIONICA -->
+  <section class="section dark" id="przionica" aria-labelledby="pr-naslov">
+    <div class="wrap">
+      <div class="roast__grid">
+        <div class="roast__photo">
+          <Pic id="bar-kreda" sizes="(min-width: 1024px) 50vw, 100vw" />
+        </div>
+        <div class="roast__text">
+          <h2 id="pr-naslov">Pržionica</h2>
+          <p class="roast__lead">Od pažljivo odabranog zrna do savršene šoljice.</p>
+          <p class="prose muted">Sveže pržena kafa, sa posebnom pažnjom posvećenom očuvanju njenog karaktera, bogatstva aroma i jedinstvenog ukusa.</p>
+          <Chalk kind="mlin" class="roast__chalk" />
+        </div>
+      </div>
+      <RoastCurve />
+    </div>
+  </section>
+
+  <!-- IZDVAJAMO -->
+  <section class="section" id="izdvajamo" aria-labelledby="iz-naslov">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 id="iz-naslov">Izdvajamo</h2>
+      </div>
+      <div class="feat">
+        {izdvajamo.map((f, i) => (
+          <article class="feat__item">
+            <div class="feat__img"><Pic id={f.slika} sizes={i === 0 ? '(min-width: 900px) 60vw, 100vw' : '(min-width: 900px) 34vw, 100vw'} /></div>
+            <p class="mono muted">{f.podnaslov}</p>
+            <h3>{f.naslov}</h3>
+            <p>{f.tekst}</p>
+            <a class="link" href={f.link.startsWith('#') ? f.link : u(`/${f.link}`)}>{f.linkTekst}</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- KAFE -->
+  <section class="section kraft" id="kafe" aria-labelledby="kafe-naslov">
+    <div class="wrap">
+      <div class="sec-head sec-head--split">
+        <h2 id="kafe-naslov">Single origin</h2>
+        <p class="lead muted">Kafe jednog porekla, sa etiketom kakvu bi imala kesa.</p>
+      </div>
+      {kafe.length > 0 ? (
+        <ul class="beans" role="list">
+          {(kafe as any[]).map((k, i) => (
+            <li class="label">
+              <div class="label__top mono"><span>{`LOT ${String(i + 1).padStart(2, '0')}`}</span><span>Mlin · Beograd</span></div>
+              <h3>{k.naziv ?? k.zemlja}</h3>
+              <dl class="mono">
+                <dt>Zemlja</dt><dd>{k.zemlja}</dd>
+                {has(k.region) && <><dt>Region</dt><dd>{k.region}</dd></>}
+                {has(k.obrada) && <><dt>Obrada</dt><dd>{k.obrada}</dd></>}
+              </dl>
+              {k.note?.length > 0 && <p class="label__notes">{k.note.join(' · ')}</p>}
+              {k.dostupnoNa?.length > 0 && <p class="mono muted">Dostupno: {k.dostupnoNa.join(' · ')}</p>}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div class="slate">
+          <Chalk kind="solja" class="slate__chalk" />
+          <div>
+            <p>Nove kafe stižu uskoro.</p>
+            <p>Pitajte baristu šta se danas melje.</p>
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- MENI -->
+  <section class="section" id="meni" aria-labelledby="meni-naslov">
+    <div class="wrap">
+      <div class="sec-head sec-head--split">
+        <h2 id="meni-naslov">Iz našeg menija</h2>
+        <p class="lead muted">Latte art, kroasani, kaše i ledene kafe. Na svakoj lokaciji ponešto drugačije.</p>
+      </div>
+      <div class="menu-grid">
+        {meniGrid.map((m) => (
+          <figure class={m.cls}>
+            <Pic id={m.id} sizes={m.sizes} position={(m as any).pos} />
+            <figcaption>{m.cap}</figcaption>
+          </figure>
+        ))}
+      </div>
+      <div class="menu-cta">
+        <p class="muted">Meni se razlikuje po lokaciji.</p>
+        <a class="btn" href={u('/meni/')}>Kompletan meni po lokaciji</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOP -->
+  <section class="section kraft" id="shop" aria-labelledby="shop-naslov">
+    <div class="wrap">
+      <div class="sec-head sec-head--split">
+        <h2 id="shop-naslov">Mlin Shop</h2>
+        <p class="lead muted">Šolje, majice i cegeri. Za upit nam pišite na mejl.</p>
+      </div>
+      <ul class="shop-teaser" role="list">
+        {teaser.map((p, i) => (
+          <li class="product">
+            <div class="product__img">
+              {p.slika
+                ? <Pic id={p.slika} sizes={i === 0 ? '(min-width: 900px) 38vw, 100vw' : '(min-width: 900px) 19vw, 50vw'} position={i === 0 ? '50% 72%' : undefined} />
+                : <div class="product__none" role="img" aria-label="Fotografija uskoro"><Wordmark title="" /></div>}
+              {p.limitirano && <span class="stamp">{p.sezona ?? 'Limitirano'}</span>}
+            </div>
+            <h3>{p.naziv}</h3>
+            <p class="product__price">{cena(p.cena) ?? 'Cena uskoro'}</p>
+            <a class="link" href={shopMail(p.naziv)}>Pošalji upit<span class="sr-only"> za {p.naziv}</span></a>
+          </li>
+        ))}
+      </ul>
+      <div class="menu-cta">
+        <span></span>
+        <a class="btn" href={u("/shop/")}>Pogledajte ceo Shop</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESPRESSO BIKE -->
+  <section class="bike dark" id="espresso-bike" aria-labelledby="bike-naslov">
+    <div class="bike__photo"><Pic id="bike" sizes="100vw" position="50% 62%" /></div>
+    <div class="wrap bike__wrap">
+      <div class="bike__panel">
+        <Chalk kind="para" class="bike__chalk" />
+        <h2 id="bike-naslov">Mlin Espresso Bike <small>Coffee for Your Event</small></h2>
+        <p class="lead">Ulepšajte posebne trenutke uz miris sveže pripremljene kafe!</p>
+        <p class="muted prose">Bilo da organizujete venčanje, rođendan, privatnu proslavu, korporativni događaj ili promociju, Mlin Espresso Bike donosi autentično iskustvo kafeterije direktno na vašu lokaciju.</p>
+        <ul class="bike__tags" role="list" aria-label="Za koje događaje">
+          <li>Venčanja</li><li>Rođendani</li><li>Proslave</li><li>Korporativni događaji</li><li>Promocije</li>
+        </ul>
+        <div><a class="btn" href={bikeMail}>Pošaljite upit</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOVOSTI -->
+  {vesti.length > 0 && (
+    <section class="section" id="novosti" aria-labelledby="nov-naslov">
+      <div class="wrap">
+        <div class="sec-head"><h2 id="nov-naslov">What's New</h2></div>
+        <ul class="news" role="list" style={`--n:${vesti.length}`}>
+          {vesti.map((n) => {
+            const inner = (
+              <>
+                {n.slika && <div class="news__img"><Pic id={n.slika} sizes="(min-width: 768px) 50vw, 100vw" position={n.slika === 'shop-solja-jelka' ? '50% 78%' : undefined} /></div>}
+                <p class="mono muted"><time datetime={n.datum}>{datum(n.datum)}</time></p>
+                <h3>{n.naslov}</h3>
+              </>
+            );
+            return (
+              <li class="news__item">
+                {n.link ? <a href={u(`/${n.link}`)}>{inner}</a> : inner}
+                <p>{n.tekst}</p>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  <!-- RECENZIJE: prikazuju se samo ako postoje u data/recenzije.json -->
+  {recenzije.length > 0 && (
+    <section class="section kraft" id="recenzije" aria-labelledby="rec-naslov">
+      <div class="wrap">
+        <div class="sec-head"><h2 id="rec-naslov">Rekli su o nama</h2></div>
+        <div class="quotes">
+          {(recenzije as any[]).map((r) => (
+            <figure class="quote">
+              <blockquote><p>{r.tekst}</p></blockquote>
+              <figcaption class="mono">
+                <span class="stars" aria-label={`Ocena ${r.ocena} od 5`}>{stars(r.ocena)}</span> · {r.ime} · {r.lokacija} · {r.izvor}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <p style="margin-top:2.5rem;display:flex;flex-wrap:wrap;gap:1rem 2rem">
+          {lokacije.filter((l) => has(l.googleRecenzijeUrl)).map((l) => (
+            <a class="link ext" href={l.googleRecenzijeUrl} target="_blank" rel="noopener">Sve recenzije na Google-u: {l.naziv}</a>
+          ))}
+        </p>
+      </div>
+    </section>
+  )}
+</Base>

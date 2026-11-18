@@ -1,0 +1,18 @@
+[
+  {
+    "naslov": "Saturday Brunch",
+    "podnaslov": "Novi Beograd · subotom do 15h",
+    "tekst": "Subotnji doručak i brunch do 15h, na Španskih boraca 3.",
+    "slika": "brunch-sto",
+    "link": "meni#novi-beograd",
+    "linkTekst": "Meni Novog Beograda"
+  },
+  {
+    "naslov": "Single Origin Coffee",
+    "podnaslov": "Sve tri lokacije",
+    "tekst": "Kafe jednog porekla koje trenutno meljemo.",
+    "slika": "vz-latte-kreda",
+    "link": "#kafe",
+    "linkTekst": "Pogledajte kafe"
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "lokacija": "terazije",
+  "_napomena": "Kategorije su sa menija na kiosku. Kafe su prepisane sa table na kiosku (fotografija 20260731_162528), letnji napici sa table Letnje šeme i čaše (20260625_142233, 20260731_162444). TODO: potvrditi i uneti cene.",
+  "kategorije": [
+    {
+      "naziv": "Espresso",
+      "stavke": [
+        { "naziv": "Espresso", "opis": "", "cena": "TODO" },
+        { "naziv": "Cappuccino", "opis": "", "cena": "TODO" },
+        { "naziv": "Cappuccino Vanilla", "opis": "", "cena": "TODO" },
+        { "naziv": "Caffe Latte", "opis": "", "cena": "TODO" },
+        { "naziv": "Ice Coffee", "opis": "", "cena": "TODO" },
+        { "naziv": "Mocha Pistacchio", "opis": "", "cena": "TODO" },
+        { "naziv": "Mocha Nutella", "opis": "", "cena": "TODO" },
+        { "naziv": "Chai Latte", "opis": "", "cena": "TODO" }
+      ]
+    },
+    {
+      "naziv": "Fresh & So Fresh",
+      "stavke": [
+        { "naziv": "Mango Matcha", "opis": "Sezonski napitak.", "cena": "TODO" },
+        { "naziv": "Ice Latte Strawberry", "opis": "Sezonski napitak.", "cena": "TODO" }
+      ]
+    },
+    { "naziv": "Smoothies & Shakes", "stavke": [] },
+    { "naziv": "Oatmeal Big Deal", "stavke": [] },
+    { "naziv": "Grab & Good", "stavke": [] },
+    { "naziv": "Afterwork", "stavke": [] }
+  ]
+}

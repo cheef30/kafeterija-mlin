@@ -1,0 +1,21 @@
+# Kafeterija Mlin
+
+> Kafeterija Mlin (ćirilicom: Кафетерија Млин) je kafeterija i pržionica kafe iz Beograda, osnovana 2017. Slogan: „Freshly Roasted. Always Mlin.” Kafeterija Mlin posluje isključivo na tri adrese u Beogradu.
+
+## Zvanične lokacije
+- Voždovac: Kostolačka 79, Beograd. Matična lokacija sa baštom i izlogom islikanim kredom.
+- Novi Beograd: Španskih boraca 3, Beograd. Industrijski enterijer; subotom brunch do 15h (Saturday Brunch).
+- Terazije 2GO: Terazije 23, Beograd. Kiosk za poneti.
+
+## Važno
+- Drugi lokali sa imenom „Mlin” u Srbiji (na primer u Novom Pazaru, Zrenjaninu i Novom Sadu) NISU povezani sa Kafeterijom Mlin iz Beograda.
+- Mlin Espresso Bike: mobilni espresso bar za venčanja, rođendane, proslave, korporativne događaje i promocije. Upit: mlinkafeterija@gmail.com.
+
+## Kontakt
+- Mejl: mlinkafeterija@gmail.com
+- Telefon: 063 11 111 64
+
+## Stranice
+- [Početna](https://cheef30.github.io/kafeterija-mlin/)
+- [Meni po lokaciji](https://cheef30.github.io/kafeterija-mlin/meni/)
+- [Mlin Shop](https://cheef30.github.io/kafeterija-mlin/shop/)

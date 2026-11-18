@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.astro/
+.DS_Store
+*.log
+
+# Originalne fotografije ne idu u repo: velike su i sadrže EXIF/GPS podatke.
+# Obrađene verzije (bez metapodataka) su u public/img/.
+slike/*
+!slike/INVENTAR.md

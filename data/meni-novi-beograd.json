@@ -1,0 +1,9 @@
+{
+  "lokacija": "novi-beograd",
+  "_napomena": "TODO: klijent šalje meni Novog Beograda. Stavka izgleda ovako: { \"naziv\": \"Cappuccino\", \"opis\": \"\", \"cena\": 250 }.",
+  "kategorije": [
+    { "naziv": "Kafa", "stavke": [] },
+    { "naziv": "Saturday Brunch", "napomena": "Subotom do 15h", "stavke": [] },
+    { "naziv": "Hrana", "stavke": [] }
+  ]
+}

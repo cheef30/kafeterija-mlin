@@ -1,0 +1,23 @@
+---
+// Dekorativna krivulja prženja. Bez vrednosti i temperatura: samo faze.
+const faze = ['zeleno zrno', 'sušenje', 'prvi krek', 'razvoj', 'Mlin'];
+// x pozicije markera (0 do 1000)
+const xs = [40, 330, 640, 800, 960];
+---
+<figure class="curve" data-curve>
+  <figcaption class="curve__title mono">
+    <span>Profil prženja</span>
+    <span aria-hidden="true">Vreme →</span>
+  </figcaption>
+  <div class="curve__chart" role="img" aria-label="Ilustracija profila prženja kroz pet faza: zeleno zrno, sušenje, prvi krek, razvoj i Mlin">
+    <svg class="curve__svg" viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+      <path class="curve__axis" d="M40 8 V296 H1000" />
+      {xs.map((x) => <line class="curve__mark" x1={x} y1="16" x2={x} y2="296" />)}
+      <path class="curve__line" pathLength="1" d="M40 60 C70 190 110 236 170 238 C300 240 430 186 600 132 C740 90 860 66 960 54" />
+    </svg>
+    <span class="curve__dot" aria-hidden="true"></span>
+  </div>
+  <ol class="curve__phases mono" aria-hidden="true">
+    {faze.map((f, i) => <li style={`--x:${xs[i] / 10}%`}>{f}</li>)}
+  </ol>
+</figure>

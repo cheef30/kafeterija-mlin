@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import Chalk from '../components/Chalk.astro';
+import { u, lokacije, mapsUrl } from '../lib/site';
+---
+<Base title="Stranica nije pronađena · Kafeterija Mlin" description="Ova stranica ne postoji. Kafeterija Mlin je na tri adrese u Beogradu." path="/404.html">
+  <section class="dark">
+    <div class="wrap nf">
+      <Chalk kind="zrno" class="nf__chalk" />
+      <h1>Ovo zrno nismo pronašli.</h1>
+      <p class="lead muted">Stranica ne postoji ili je premeštena. Kafa je i dalje na istim adresama.</p>
+      <ul role="list" style="display:grid;gap:.25rem">
+        {lokacije.map((l) => (
+          <li><a class="link ext" href={mapsUrl(l)} target="_blank" rel="noopener">{l.naziv} · {l.adresa}</a></li>
+        ))}
+      </ul>
+      <div><a class="btn" href={u('/')}>Nazad na početnu</a></div>
+    </div>
+  </section>
+</Base>

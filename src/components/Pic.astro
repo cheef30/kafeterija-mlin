@@ -1,0 +1,37 @@
+---
+// Responsivna slika iz public/img (AVIF, WebP, JPG) sa eksplicitnim dimenzijama.
+import images from '../generated/images.json';
+import { u } from '../lib/site';
+
+interface Props {
+  id: string;
+  sizes: string;
+  class?: string;
+  priority?: boolean;
+  alt?: string;
+  position?: string;
+}
+const { id, sizes, class: cls = '', priority = false, alt, position } = Astro.props;
+const img = (images as Record<string, { w: number; h: number; widths: number[]; alt: string; bg: string }>)[id];
+if (!img) throw new Error(`Nepoznata slika: ${id}`);
+const set = (ext: string) => img.widths.map((w) => `${u(`/img/${id}-${w}.${ext}`)} ${w}w`).join(', ');
+const fallbackW = img.widths.includes(960) ? 960 : img.widths[img.widths.length - 1];
+const style = `background-color:${img.bg};${position ? `object-position:${position};` : ''}`;
+---
+<picture>
+  <source type="image/avif" srcset={set('avif')} sizes={sizes} />
+  <source type="image/webp" srcset={set('webp')} sizes={sizes} />
+  <img
+    src={u(`/img/${id}-${fallbackW}.jpg`)}
+    srcset={set('jpg')}
+    sizes={sizes}
+    width={img.w}
+    height={img.h}
+    alt={alt ?? img.alt}
+    class={cls}
+    style={style}
+    loading={priority ? 'eager' : 'lazy'}
+    decoding={priority ? 'sync' : 'async'}
+    fetchpriority={priority ? 'high' : 'auto'}
+  />
+</picture>

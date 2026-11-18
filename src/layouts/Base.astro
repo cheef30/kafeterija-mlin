@@ -1,0 +1,123 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { u, SITE_URL, lokacije, kontakt, mapsUrl, instagramUrl, has } from '../lib/site';
+
+interface Props {
+  title: string;
+  description: string;
+  current?: string;
+  path?: string;
+  preloadImage?: { srcset: string; sizes: string } | null;
+  schema?: boolean;
+}
+const { title, description, current, path = '/', preloadImage = null, schema = false } = Astro.props;
+const canonical = `${SITE_URL}${path}`;
+const ogImage = `${SITE_URL}/og-image.jpg`;
+
+const ld = schema
+  ? {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Organization',
+          '@id': `${SITE_URL}/#organizacija`,
+          name: 'Kafeterija Mlin',
+          alternateName: 'Кафетерија Млин',
+          url: `${SITE_URL}/`,
+          logo: `${SITE_URL}/assets/mlin-wordmark-grafit.svg`,
+          image: ogImage,
+          foundingDate: '2017',
+          email: kontakt.mejl,
+          telephone: kontakt.telefonLink,
+          slogan: 'Freshly Roasted. Always Mlin.',
+          description: 'Kafeterija i pržionica kafe iz Beograda, osnovana 2017. Posluje isključivo na tri adrese: Kostolačka 79 (Voždovac), Španskih boraca 3 (Novi Beograd) i Terazije 23 (Terazije 2GO).',
+          ...(instagramUrl ? { sameAs: [instagramUrl] } : {}),
+          subOrganization: lokacije.map((l) => ({ '@id': `${SITE_URL}/#${l.id}` })),
+        },
+        ...lokacije.map((l) => ({
+          '@type': 'CafeOrCoffeeShop',
+          '@id': `${SITE_URL}/#${l.id}`,
+          name: `Kafeterija Mlin · ${l.naziv}`,
+          parentOrganization: { '@id': `${SITE_URL}/#organizacija` },
+          url: `${SITE_URL}/#lokacije`,
+          image: `${SITE_URL}/img/${l.slika}-960.jpg`,
+          telephone: kontakt.telefonLink,
+          email: kontakt.mejl,
+          servesCuisine: 'Kafa',
+          hasMap: mapsUrl(l),
+          hasMenu: `${SITE_URL}/meni/#${l.id}`,
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: l.adresa,
+            addressLocality: l.grad,
+            postalCode: l.postanskiBroj,
+            addressCountry: 'RS',
+          },
+          ...(has(l.geo) && typeof l.geo === 'object' ? { geo: { '@type': 'GeoCoordinates', latitude: l.geo.lat, longitude: l.geo.lng } } : {}),
+          ...(has(l.openingHoursSchema) ? { openingHours: l.openingHoursSchema } : {}),
+        })),
+      ],
+    }
+  : null;
+---
+<!doctype html>
+<html lang="sr-Latn">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#1F1B17" />
+    <link rel="icon" href={u('/favicon.svg')} type="image/svg+xml" />
+    <link rel="icon" href={u('/favicon-32.png')} sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href={u('/apple-touch-icon.png')} />
+    <link rel="preload" href={u('/fonts/archivo-latin.woff2')} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={u('/fonts/source-sans-3-latin.woff2')} as="font" type="font/woff2" crossorigin />
+    {preloadImage && (
+      <link rel="preload" as="image" type="image/avif" imagesrcset={preloadImage.srcset} imagesizes={preloadImage.sizes} fetchpriority="high" />
+    )}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="sr_RS" />
+    <meta property="og:site_name" content="Kafeterija Mlin" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Logo МЛИН кафетерија i barista koji sipa latte art" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <link rel="sitemap" href={u('/sitemap.xml')} />
+
+    {ld && <script type="application/ld+json" set:html={JSON.stringify(ld)} />}
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <!--
+      Analitika bez kolačića (isključeno). Ako klijent poželi, odkomentarisati:
+      <script defer data-domain="cheef30.github.io/kafeterija-mlin" src="https://plausible.io/js/script.js"></script>
+    -->
+  </head>
+  <body>
+    <a class="skip-link" href="#sadrzaj">Preskoči na sadržaj</a>
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <filter id="kreda" x="-5%" y="-5%" width="110%" height="110%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7" result="n" />
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" />
+      </filter>
+    </svg>
+    <Header current={current} />
+    <main id="sadrzaj" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      import '../scripts/site';
+    </script>
+  </body>
+</html>

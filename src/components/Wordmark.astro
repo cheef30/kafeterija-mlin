@@ -1,0 +1,13 @@
+---
+import { wordmarkSVG } from '../lib/wordmark.mjs';
+interface Props {
+  tagline?: boolean;
+  class?: string;
+  crank?: boolean;
+  frame?: boolean;
+  title?: string;
+}
+const { tagline = true, class: cls = '', crank = false, frame = true, title = 'Kafeterija Mlin' } = Astro.props;
+const svg = wordmarkSVG({ tagline, className: `wordmark ${cls}`, crank, frame, title });
+---
+<Fragment set:html={svg} />
